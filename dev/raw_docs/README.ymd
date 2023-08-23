@@ -29,12 +29,6 @@
     <a href="https://app.codacy.com/gh/{{github/organization}}/{{github/repo_name}}/dashboard">
         <img alt="Codacy Badge" src="https://img.shields.io/codacy/grade/{{badges/codacy}}?style=for-the-badge&logo=data:image/png;base64,{{icons/png_b64_code}}">
     </a>
-    <a href="https://github.com/{{github/organization}}/{{github/repo_name}}/releases">
-        <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/{{github/organization}}/{{github/repo_name}}?include_prereleases&style=for-the-badge&logo=data:image/png;base64,{{icons/png_b64_package}}">
-    </a>
-    <a href="https://github.com/{{github/organization}}/{{github/repo_name}}/releases">
-        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/{{github/organization}}/{{github/repo_name}}/build.yml?branch=main&label=Build&style=for-the-badge&logo=data:image/png;base64,{{icons/png_b64_rocket}}">
-    </a>
 </p>
 <p align="center">
     <a target="_blank" href="https://discord.com/invite/{{author/discord/server/inv}}">
