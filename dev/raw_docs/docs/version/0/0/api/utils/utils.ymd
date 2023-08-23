@@ -1,0 +1,24 @@
+## str2int
+
+```mermaid
+%% id_tag
+flowchart LR
+    metadata["<font color=orange>id: metadata</font><br>d7d058"]
+    args[/num/] --> a{is num an<br>integer?}
+        a --> |yes| b[num]:::success
+        a --> |no| c{is num not an<br>empty string?}
+            c --> |yes| d{does num starts<br>with '-' or '+'?}
+                d --> |yes| e{are all the characters<br>of num, except the<br>first character, a decimal?}
+                    e --> |yes| f["int(num)"]:::success
+                    e --> |no| g
+                d --> |no| g
+            c --> |no| g{are all the<br>characters<br>of num a<br>decimal?}
+                g --> |yes| f
+                g --> |no| h[None]:::success
+
+subgraph returns
+b;f;h
+end
+
+    classDef success color:#83ce9e,stroke:#6fc890
+```
