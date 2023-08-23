@@ -56,7 +56,7 @@ Website: [whsn.whinyaan.xyz](https://whsn.whinyaan.xyz)
 
 Github: [github.com/whinee/whinesnips](https://github.com/whinee/whinesnips)
 
-PyPi: [pypi.org/project/wh-snips](https://pypi.org/project/wh-snips/)
+PyPi: [pypi.org/project/whinesnips](https://pypi.org/project/whinesnips/)
 
 ---
 

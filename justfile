@@ -132,11 +132,8 @@ bump: (menu "bump")
 # Push to Github
 push: (menu "push")
 
-# Copy constants
+# Generate Dynamic Files
 gdf: (menu "gdf")
-
-# Generate scripts
-gs: (menu "gs")
 
 # Lint codebase
 lint:
@@ -149,3 +146,11 @@ lint:
 # Test
 test:
     {{ python }} -m pytest --junitxml=tmp/junit.xml
+
+# Build
+build:
+    rm -rf dist
+    just gdf
+    just docs
+    just lint
+    poetry build

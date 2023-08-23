@@ -1,8 +1,8 @@
 import itertools
+import os
 import re
 import shutil
 from typing import Any
-import os
 
 import toml
 
@@ -98,7 +98,11 @@ def mr(name: str, script_md: dict[str, str]) -> list[list[str]]:
     `list[list[str]]`: Matrix output.
     """
 
-    path, contents = repl(name, os.path.join(VER_DIR, 'scripts', 'tpl', script_md["path"]), script_md["op_path"])
+    path, contents = repl(
+        name,
+        os.path.join(VER_DIR, "scripts", "tpl", script_md["path"]),
+        script_md["op_path"],
+    )
     if mx_keys := re.findall(RE_MX, path):
         op = []
         for i in mx_keys_combi(mx_keys):
@@ -177,11 +181,10 @@ def mod_pyproject() -> None:
     info_authors_vd = {
         i: GLOBAL_VARS.dir(i, "None") for i in ["author/name_clean", "author/email"]
     }
-    info_authors = ["{} <{}>".format(*info_authors_vd.values(), **info_authors_vd)]
+    info_author = '    "{} <{}>",'.format(*info_authors_vd.values(), **info_authors_vd)
 
     info_dict: dict[str, Any] = {
-        "authors": info_authors,
-        "maintainers": info_authors,
+        "readme": f'{YML.dir("docs/op")}/README.md',
         **info_tpls_filler(info_tpls),
     }
 
@@ -194,9 +197,9 @@ def mod_pyproject() -> None:
             key_repl(
                 {
                     "info": info_dict,
-                    "package_include_src": '    { include = "'
-                    + project_dir
-                    + '" }',
+                    "main author": info_author,
+                    "main maintainer": info_author,
+                    "package include source": '    { include = "' + project_dir + '" }',
                 },
                 pyproject_toml,
             ),

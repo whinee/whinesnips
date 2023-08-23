@@ -50,10 +50,10 @@ vars:
       name: whinesnips # MODIFY ME!
 
       # cmd of the project
-      cmd: whsn # MODIFY ME!
+      # cmd: whsn # MODIFY ME!
 
       # PIP package name of the project
-      pip: wh-snips # MODIFY ME!
+      pip: whinesnips # MODIFY ME!
 
       # Year from when the project is created until the current year when the
       # project has been last updated

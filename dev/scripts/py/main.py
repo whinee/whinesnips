@@ -77,14 +77,13 @@ def push(v: Optional[list[int]] = None) -> None:
     Args:
     - v (`list[int]`, optional): _description_. Defaults to `None`.
     """
-    msg = inquirer.text(message="Enter commit message", default="")
+    msg = inquirer.text(message="Enter commit message", default="push")
 
+    gdf()
     docs()
     run_cmd("just lint")
     run_cmd("git add .")
 
-    if msg != "":
-        msg = "\n" + msg
     if v:
         msg = "\n".join(
             [

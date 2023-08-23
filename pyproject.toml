@@ -1,8 +1,7 @@
 [tool.poetry]
 # [DO NOT MODIFY] info start
-authors = [ "whitespace_negative <whinyaan@protonmail.com>",]
-maintainers = [ "whitespace_negative <whinyaan@protonmail.com>",]
-name = "wh-snips"
+readme = "docs/README.md"
+name = "whinesnips"
 license = "MIT"
 version = "0.0.0.0-alpha.0"
 description = "Bloated python utility library"
@@ -11,10 +10,21 @@ repository = "https://github.com/whinee/whinesnips"
 documentation = "https://whsn.whinyaan.xyz"
 # info end
 
+authors = [
+    # [DO NOT MODIFY] main author start
+    "whitespace_negative <whinyaan@protonmail.com>",
+    # main author end
+]
+maintainers = [
+    # [DO NOT MODIFY] main maintainer start
+    "whitespace_negative <whinyaan@protonmail.com>",
+    # main maintainer end
+]
+
 packages = [
-# [DO NOT MODIFY] package_include_src start
+# [DO NOT MODIFY] package include source start
     { include = "whinesnips" }
-# package_include_src end
+# package include source end
 ]
 
 classifiers=[
