@@ -126,7 +126,9 @@ def _set_ver(vls: list[int]) -> None:
     Args:
         vls (list[int]): Version list.
     """
-    const_path = PROJECT_CFG["const_dir"] + "/const.mp"
+    const_path = os.path.join(
+        YML.dir("files/project"), PROJECT_CFG["const_dir"], "const.mp",
+    )
     const_mp = rcfg(const_path)
     op_ls = [vls, *vls_str(vls)]
 
@@ -215,11 +217,12 @@ def bump() -> None:
     while True:
         choices = []
         for idx, k in enumerate(VERSIONS_NAME):
-            choices.append([f"{k.ljust(23)}(bump to {vls_str(_bump(idx))[0]})", idx])
-        idx = inquirer.list_input(
+            choices.append(f"{k.ljust(23)}(bump to {vls_str(_bump(idx))[0]})")
+        choice = inquirer.list_input(
             message=f"What version do you want to bump? (Current version: {vls_str(VLS)[0]})",
             choices=choices,
         )
+        idx = choices.index(choice)
         _vls = _bump(idx)
         print(
             f"    This will bump the version from {vls_str(VLS)[0]} to {vls_str(_vls)[0]} ({VERSIONS_NAME[idx]} bump). ",
@@ -227,18 +230,18 @@ def bump() -> None:
         match inquirer.list_input(
             message="Are you sure?",
             choices=[
-                ["Yes", "y"],
-                ["No", "n"],
-                ["Cancel", "c"],
+                "Yes",
+                "No",
+                "Cancel",
             ],
         ):
-            case "y":
+            case "Yes":
                 _set_ver(_vls)
                 push(_vls)
                 return
-            case "n":
+            case "No":
                 continue
-            case "c":
+            case "Cancel":
                 break
             case _:
                 pass
