@@ -538,7 +538,7 @@ If given number is int, return it. Else, if given number is string and is decima
 <h3><b><i><a href="#func-vls_str" id="func-vls_str">vls_str</a></i></b></h3>
 
 ```python
-(vls: list[str | int]) ‑> list[str]
+(vls: list[str | int] | list[int] | list[str]) ‑> list[str]
 ```
 
     

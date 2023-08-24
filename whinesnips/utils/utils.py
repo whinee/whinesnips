@@ -464,7 +464,7 @@ def str2int(num: int | str) -> Optional[int]:
     return None
 
 
-def vls_str(vls: list[str | int]) -> list[str]:
+def vls_str(vls: list[str | int] | list[int] | list[str]) -> list[str]:
     """
     Given the list of version numbers, convert them to their string representation both in modified semver form and semver-compliant form.
 

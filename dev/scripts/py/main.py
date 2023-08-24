@@ -79,7 +79,6 @@ def push(v: Optional[list[int]] = None) -> None:
     """
     msg = inquirer.text(message="Enter commit message", default="push")
 
-    gdf()
     docs()
     run_cmd("just lint")
     run_cmd("git add .")
@@ -127,7 +126,9 @@ def _set_ver(vls: list[int]) -> None:
         vls (list[int]): Version list.
     """
     const_path = os.path.join(
-        YML.dir("files/project"), PROJECT_CFG["const_dir"], "const.mp",
+        YML.dir("files/project"),
+        PROJECT_CFG["const_dir"],
+        "const.mp",
     )
     const_mp = rcfg(const_path)
     op_ls = [vls, *vls_str(vls)]
@@ -237,7 +238,9 @@ def bump() -> None:
         ):
             case "Yes":
                 _set_ver(_vls)
-                push(_vls)
+                run_cmd(
+                    f'python -c "from dev.scripts.py.main import push;push({_vls})"',
+                )
                 return
             case "No":
                 continue

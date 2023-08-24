@@ -3,7 +3,7 @@
 readme = "docs/README.md"
 name = "whinesnips"
 license = "MIT"
-version = "0.0.0.0-alpha.0"
+version = "0.0.0.0-alpha.1"
 description = "Bloated python utility library"
 homepage = "https://whsn.whinyaan.xyz"
 repository = "https://github.com/whinee/whinesnips"
