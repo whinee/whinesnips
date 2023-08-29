@@ -787,6 +787,22 @@ end
 <h3><i><a href="#func-fill_ls-returns" id="func-fill_ls-returns">Returns:</a></i></h3>
 
 <p><code>types.SequenceAny</code>: Filled list.</p>
+<h3><b><i><a href="#func-fn" id="func-fn">fn</a></i></b></h3>
+
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">relative_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+<p>Given a path, output the same path, relative to the absolute directory path of the file that invoked this function.</p>
+<p>An optional argument <code>idx</code> can be supplied to change what script to get the absolute directory path from. Consider the following scenario:</p>
+<p>A helper function in <code>src/utils/utils</code> that takes in a relative path as an argument wants to transform the path into one relative to the caller's path. However, the said function needs to call this function directly. Said function can then use an index of <code>2</code> so that the given path to this function will be processed to be relative from the caller's path, not from the funciton in <code>src/utils/utils</code>.</p>
+<h3><i><a href="#func-fn-args" id="func-fn-args">Args:</a></i></h3>
+
+<ul>
+<li>relative_path (<code>str</code>): Path to output relative to the caller's path.</li>
+<li>idx (<code>Optional[int]</code>, optional): Index of the stack to relativize the path from. Defaults to <code>1</code>.</li>
+</ul>
+<h3><i><a href="#func-fn-returns" id="func-fn-returns">Returns:</a></i></h3>
+
+<p><code>str</code>: Path relative to the caller's path.</p>
 <h3><b><i><a href="#func-inmd" id="func-inmd">inmd</a></i></b></h3>
 
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="nb">str</span>

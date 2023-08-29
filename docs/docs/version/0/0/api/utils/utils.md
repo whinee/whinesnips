@@ -227,6 +227,33 @@ Fill given list (`ls`) with `filler` up to `length`.
     
 
     
+<h3><b><i><a href="#func-fn" id="func-fn">fn</a></i></b></h3>
+
+```python
+(relative_path: str, idx: Optional[int] = None) ‑> str
+```
+
+    
+Given a path, output the same path, relative to the absolute directory path of the file that invoked this function.
+
+An optional argument `idx` can be supplied to change what script to get the absolute directory path from. Consider the following scenario:
+
+A helper function in `src/utils/utils` that takes in a relative path as an argument wants to transform the path into one relative to the caller's path. However, the said function needs to call this function directly. Said function can then use an index of `2` so that the given path to this function will be processed to be relative from the caller's path, not from the funciton in `src/utils/utils`.
+
+    
+<h3><i><a href="#func-fn-args" id="func-fn-args">Args:</a></i></h3>
+
+- relative_path (`str`): Path to output relative to the caller's path.
+- idx (`Optional[int]`, optional): Index of the stack to relativize the path from. Defaults to `1`.
+
+    
+<h3><i><a href="#func-fn-returns" id="func-fn-returns">Returns:</a></i></h3>
+
+`str`: Path relative to the caller's path.
+
+    
+
+    
 <h3><b><i><a href="#func-inmd" id="func-inmd">inmd</a></i></b></h3>
 
 ```python

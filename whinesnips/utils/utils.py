@@ -1,6 +1,7 @@
 import ast
 import difflib
 import hashlib
+import inspect
 import itertools
 import os
 import re
@@ -212,6 +213,28 @@ def fill_ls(
         return ls
 
     return [*ls, *[filler for _ in range(length - lls)]]
+
+
+def fn(relative_path: str, idx: Optional[int] = None) -> str:
+    """
+    Given a path, output the same path, relative to the absolute directory path of the file that invoked this function.
+
+    An optional argument `idx` can be supplied to change what script to get the absolute directory path from. Consider the following scenario:
+
+    A helper function in `src/utils/utils` that takes in a relative path as an argument wants to transform the path into one relative to the caller's path. However, the said function needs to call this function directly. Said function can then use an index of `2` so that the given path to this function will be processed to be relative from the caller's path, not from the funciton in `src/utils/utils`.
+
+    Args:
+    - relative_path (`str`): Path to output relative to the caller's path.
+    - idx (`Optional[int]`, optional): Index of the stack to relativize the path from. Defaults to `1`.
+
+    Returns:
+    `str`: Path relative to the caller's path.
+    """
+    if idx is None:
+        idx = 1
+    return os.path.normpath(
+        os.path.join(os.path.dirname(inspect.stack()[idx][1]), relative_path),
+    )
 
 
 def inmd(fp: str, ls: Optional[list[str]] = None) -> str:
