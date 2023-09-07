@@ -254,6 +254,28 @@ A helper function in `src/utils/utils` that takes in a relative path as an argum
     
 
     
+<h3><b><i><a href="#func-half_round" id="func-half_round">half_round</a></i></b></h3>
+
+```python
+(n: float | int) ‑> int
+```
+
+    
+Given a number, half it, then round it to nearest ones place.
+
+    
+<h3><i><a href="#func-half_round-args" id="func-half_round-args">Args:</a></i></h3>
+
+- n (`float | int`): number to half and round.
+
+    
+<h3><i><a href="#func-half_round-returns" id="func-half_round-returns">Returns:</a></i></h3>
+
+`int`: half and rounded number.
+
+    
+
+    
 <h3><b><i><a href="#func-inmd" id="func-inmd">inmd</a></i></b></h3>
 
 ```python
@@ -518,7 +540,7 @@ Reference: https://stackoverflow.com/a/93029
 <h3><b><i><a href="#func-squery" id="func-squery">squery</a></i></b></h3>
 
 ```python
-(query: str, possibilities: list[str], cutoff: int | float = 0.6, *, processor: collections.abc.Callable[[typing.Any], typing.Any] = <function <lambda>>) ‑> collections.abc.Generator[tuple[None, str] | tuple[float, str], None, None]
+(query: str, possibilities: list[str], cutoff: float | int = 0.6, *, processor: collections.abc.Callable[[typing.Any], typing.Any] = <function <lambda>>) ‑> collections.abc.Generator[tuple[None, str] | tuple[float, str], None, None]
 ```
 
     

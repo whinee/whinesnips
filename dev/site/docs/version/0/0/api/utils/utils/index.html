@@ -803,6 +803,19 @@ end
 <h3><i><a href="#func-fn-returns" id="func-fn-returns">Returns:</a></i></h3>
 
 <p><code>str</code>: Path relative to the caller's path.</p>
+<h3><b><i><a href="#func-half_round" id="func-half_round">half_round</a></i></b></h3>
+
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="nb">int</span>
+</code></pre></div>
+<p>Given a number, half it, then round it to nearest ones place.</p>
+<h3><i><a href="#func-half_round-args" id="func-half_round-args">Args:</a></i></h3>
+
+<ul>
+<li>n (<code>float | int</code>): number to half and round.</li>
+</ul>
+<h3><i><a href="#func-half_round-returns" id="func-half_round-returns">Returns:</a></i></h3>
+
+<p><code>int</code>: half and rounded number.</p>
 <h3><b><i><a href="#func-inmd" id="func-inmd">inmd</a></i></b></h3>
 
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="nb">str</span>
@@ -936,7 +949,7 @@ end
 <p><code>str</code>: Sanitized text.</p>
 <h3><b><i><a href="#func-squery" id="func-squery">squery</a></i></b></h3>
 
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">possibilities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;&gt;</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Generator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">possibilities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;&gt;</span><span class="p">)</span> <span class="err">‑</span><span class="o">&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Generator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 </code></pre></div>
 <p>Custom search query.</p>
 <h3><i><a href="#func-squery-args" id="func-squery-args">Args:</a></i></h3>
