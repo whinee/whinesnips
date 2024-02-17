@@ -227,6 +227,17 @@ Fill given list (`ls`) with `filler` up to `length`.
     
 
     
+<h3><b><i><a href="#func-flatten_element" id="func-flatten_element">flatten_element</a></i></b></h3>
+
+```python
+(elem: dict[typing.Any, typing.Any], sep: str = '/') ‑> dict[typing.Any, typing.Any]
+```
+
+    
+
+    
+
+    
 <h3><b><i><a href="#func-fn" id="func-fn">fn</a></i></b></h3>
 
 ```python

@@ -37,7 +37,7 @@ Dump the given value to a string with the given extension.
 <h3><b><i><a href="#func-pcfg" id="func-pcfg">pcfg</a></i></b></h3>
 
 ```python
-(d: str, type: str) ‑> whinesnips.cd.CustomDict
+(d: str, type: str) ‑> dict[typing.Any, typing.Any]
 ```
 
     
@@ -52,7 +52,7 @@ Parse the given string as the given type.
     
 <h3><i><a href="#func-pcfg-returns" id="func-pcfg-returns">Returns:</a></i></h3>
 
-`CustomDict`: The parsed string.
+`dict`: The parsed string.
 
     
 
@@ -60,7 +60,7 @@ Parse the given string as the given type.
 <h3><b><i><a href="#func-rcfg" id="func-rcfg">rcfg</a></i></b></h3>
 
 ```python
-(file: str) ‑> whinesnips.cd.CustomDict
+(file: str) ‑> dict[typing.Any, typing.Any]
 ```
 
     
@@ -74,7 +74,7 @@ Read the contents of a file with the given file name.
     
 <h3><i><a href="#func-rcfg-returns" id="func-rcfg-returns">Returns:</a></i></h3>
 
-`CustomDict`: The contents of the file.
+`dict`: The contents of the file.
 
     
 

@@ -60,7 +60,7 @@ def gdf() -> None:
 
     #     wcfg(path.join(lang_path, path.splitext(path.basename(i))[0] + ".mp"), tl_yml)
 
-    wcfg(os.path.join(YML.dir("files/project"), const_dir, "const.mp"), GLOBAL_VARS)
+    wcfg(os.path.join(YML["files"]["project"], const_dir, "const.mp"), GLOBAL_VARS)
 
 
 def docs() -> None:
@@ -126,7 +126,7 @@ def _set_ver(vls: list[int]) -> None:
         vls (list[int]): Version list.
     """
     const_path = os.path.join(
-        YML.dir("files/project"),
+        YML["files"]["project"],
         PROJECT_CFG["const_dir"],
         "const.mp",
     )

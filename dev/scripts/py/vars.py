@@ -4,10 +4,10 @@ import os
 import urllib.parse
 import xml.etree.ElementTree as ET  # noqa: N817
 from datetime import date
+from typing import Any
 
-from whinesnips.cd import CustomDict, flatten_element
 from whinesnips.utils.cfg import rcfg
-from whinesnips.utils.utils import vls_str
+from whinesnips.utils.utils import flatten_element, vls_str
 
 # Constants
 OP_CHOLDER_TPL = """by [{cholder}, Github account <a target=_blank
@@ -69,7 +69,7 @@ cholder_ls = []
 
 
 # Functions
-def vrcfg(name: str) -> "CustomDict":
+def vrcfg(name: str) -> dict[Any, Any]:
     """
     Read config from directory of current version's constants.
 
@@ -77,7 +77,7 @@ def vrcfg(name: str) -> "CustomDict":
     - name (`str`): Name of the config to read.
 
     Returns:
-    `CustomDict`: Config.
+    `dict[Any, Any]`: Config.
     """
     return rcfg(os.path.join(VER_DIR, f"{name}.yml"))
 
@@ -110,14 +110,12 @@ else:
     cholder = S_CHOLDER_TPL.format(user=USER, year=YEAR)
 
 
-GLOBAL_VARS = CustomDict(
-    {
-        **GLOBAL_VARS,
-        "year": str(date.today().year),
-        "cholder": cholder,
-        "license_type": LICENSE["type"],
-    },
-)
+GLOBAL_VARS = {
+    **GLOBAL_VARS,
+    "year": str(date.today().year),
+    "cholder": cholder,
+    "license_type": LICENSE["type"],
+}
 
 for k, v in zip(["vls", "ver", "sver"], [VLS, *vls_str(VLS)], strict=True):
     GLOBAL_VARS[k] = v
@@ -126,7 +124,7 @@ for idx, i in enumerate(["user", "dev", "minor", "patch", "pri", "prv"]):
     GLOBAL_VARS[f"ver_{i}"] = str(VLS[idx])
 
 GLOBAL_VARS["text"] = {
-    k: v["str"] for k, v in vrcfg("lang/en").dir("text/common/info").items()
+    k: v["str"] for k, v in vrcfg("lang/en")["text"]["common"]["info"].items()
 }
 
 VARS["global"] = GLOBAL_VARS
@@ -198,12 +196,10 @@ with open("tmp/junit.xml") as f:  # type: ignore[assignment]
             }
     MD_GLOBAL_VARS["badges"]["pytest_img_tag"] = PYTEST_BADGE_TPL.format(**qs)
 
-MD_RULES_VARS = CustomDict(
-    {
-        "rules": YML["rules"],
-        "vars": {
-            "global": flatten_element(MD_GLOBAL_VARS),
-            "local": {k: flatten_element(v) in LOCAL_VARS.items()},
-        },
+MD_RULES_VARS = {
+    "rules": YML["rules"],
+    "vars": {
+        "global": flatten_element(MD_GLOBAL_VARS),
+        "local": {k: flatten_element(v) in LOCAL_VARS.items()},
     },
-)
+}

@@ -1,12 +1,12 @@
 [tool.poetry]
 # [DO NOT MODIFY] info start
 readme = "docs/README.md"
-name = "whinesnips"
+name = "None"
 license = "MIT"
-version = "0.0.0.0-alpha.3"
-description = "Bloated python utility library"
+version = "0.0.0.0-alpha.4"
+description = "None"
 homepage = "https://whsn.whinyaan.xyz"
-repository = "https://github.com/whinee/whinesnips"
+repository = "https://github.com/None/None"
 documentation = "https://whsn.whinyaan.xyz"
 # info end
 

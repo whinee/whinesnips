@@ -8,7 +8,6 @@ title: whinesnips
 
 ## **<a href="#sub" id="sub">Sub-modules</a>**
 
-- [whinesnips.cd](cd.md)
 - [whinesnips.utils](utils.md)
 
 

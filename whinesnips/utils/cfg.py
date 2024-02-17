@@ -5,12 +5,10 @@ import msgpack
 import yaml
 
 try:
-    from ..cd import CustomDict
     from . import types
     from .exceptions import CFGExceptions
     from .utils import yaml_str_presenter
 except ImportError:
-    from whinesnips.cd import CustomDict
     from whinesnips.utils import types
     from whinesnips.utils.exceptions import CFGExceptions
     from whinesnips.utils.utils import yaml_str_presenter
@@ -37,7 +35,7 @@ TYPES: dict[
 yaml.add_representer(str, yaml_str_presenter)
 
 
-def pcfg(d: str, type: str) -> CustomDict:
+def pcfg(d: str, type: str) -> dict[Any, Any]:
     """
     Parse the given string as the given type.
 
@@ -46,12 +44,12 @@ def pcfg(d: str, type: str) -> CustomDict:
     - type (`str`): Type to parse the string as.
 
     Returns:
-    `CustomDict`: The parsed string.
+    `dict`: The parsed string.
     """
 
     for k, v in TYPES["r"]:
         if type in k:
-            return CustomDict(v[1](d))
+            return v[1](d)
     raise CFGExceptions.ExtensionNotSupported(type)
 
 
@@ -74,7 +72,7 @@ def dcfg(value: dict[str, Any], ext: str) -> str:
     raise CFGExceptions.ExtensionNotSupported(ext)
 
 
-def rcfg(file: str) -> CustomDict:
+def rcfg(file: str) -> dict[Any, Any]:
     """
     Read the contents of a file with the given file name.
 
@@ -82,14 +80,14 @@ def rcfg(file: str) -> CustomDict:
     - file (`str`): File name of the file to read the contents of.
 
     Returns:
-    `CustomDict`: The contents of the file.
+    `dict`: The contents of the file.
     """
 
     ext = file.split(".")[-1]
     for k, v in TYPES["r"]:
         if ext in k:
             with open(file, v[0]) as f:
-                return CustomDict(v[1](f.read()))
+                return v[1](f.read())
     raise CFGExceptions.ExtensionNotSupported(ext)
 
 

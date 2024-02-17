@@ -68,7 +68,7 @@ def repl(name: str, path: str, op_path: str) -> tuple[str, str]:
     Returns:
     `tuple[str, str]`: Evaluated output path and file content.
     """
-    lv = SCRIPTS.dir(f"variables/local/{name}", {})
+    lv = SCRIPTS["variables"]["local"].get(name, {})
     rmvg = {**GLOBAL, **lv}
 
     for k, v in rmvg.items():
@@ -122,7 +122,7 @@ def info_tpls_filler(
     """key-value pair of key and tuple with two items, the first item being the string template and the second being list of keys indexed from global variables to be placed in the string format. If the string format is `None`, then the values of the global variables indexed will be concatenated."""
     info_dict = {}
     for k, (str_fmt, kls) in info_tpls_dict.items():
-        vd = {i: GLOBAL_VARS.dir(i, "None") for i in kls}
+        vd = {i: GLOBAL_VARS.get(i, "None") for i in kls}
         if str_fmt is None:
             op = " ".join([str(i) for i in vd.values()])
         else:
@@ -156,7 +156,7 @@ def mod_justfile() -> None:
         f.write(
             key_repl(
                 {
-                    "src": f'src := "{YML.dir("files/project")}"',
+                    "src": f'src := "{YML["files"]["project"]}"',
                 },
                 justfile,
             ),
@@ -164,7 +164,7 @@ def mod_justfile() -> None:
 
 
 def mod_pyproject() -> None:
-    project_dir = YML.dir("files/project")
+    project_dir = YML["files"]["project"]
     info_tpls: dict[str, tuple[None, list[str]] | tuple[str, list[str]]] = {
         "name": (None, ["project/name" if project_dir == "src" else "project/pip"]),
         "license": (None, ["license_type"]),
@@ -179,12 +179,12 @@ def mod_pyproject() -> None:
     }
 
     info_authors_vd = {
-        i: GLOBAL_VARS.dir(i, "None") for i in ["author/name_clean", "author/email"]
+        i: GLOBAL_VARS.get("author", {}).get(i, "None") for i in ["name_clean", "email"]
     }
     info_author = '    "{} <{}>",'.format(*info_authors_vd.values(), **info_authors_vd)
 
     info_dict: dict[str, Any] = {
-        "readme": f'{YML.dir("docs/op")}/README.md',
+        "readme": f'{YML["docs"]["op"]}/README.md',
         **info_tpls_filler(info_tpls),
     }
 

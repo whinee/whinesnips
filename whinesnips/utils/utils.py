@@ -215,6 +215,39 @@ def fill_ls(
     return [*ls, *[filler for _ in range(length - lls)]]
 
 
+def flatten_element(elem: dict[Any, Any], sep: str = '/') -> dict[Any, Any]:
+    flattened_dict = {}
+    stack = [(elem, "")]
+
+    while stack:
+        current_elem, parent_key = stack.pop(0)
+
+        if isinstance(current_elem, list) or isinstance(current_elem, tuple):
+            for i, item in enumerate(current_elem):
+                item_key = str(i)
+                new_key = f"{parent_key}{sep}{item_key}" if parent_key else item_key
+                if isinstance(item, dict):
+                    stack.append((item, new_key))
+                else:
+                    flattened_dict[new_key] = item
+        elif isinstance(current_elem, dict):
+            for key, value in current_elem.items():
+                if not isinstance(key, int) and not isinstance(key, str):
+                    raise TypeError(f"Expected key to be of type `int` or `str`, but instead got `{type(key).__name__}`.")
+                new_key = f"{parent_key}{sep}{key}" if parent_key else str(key)
+
+                if isinstance(value, dict):
+                    stack.append((value, new_key))
+                elif isinstance(value, list) or isinstance(value, tuple):
+                    for i, item in enumerate(value):
+                        item_key = f"{new_key}{sep}{i}"
+                        flattened_dict[item_key] = item
+                else:
+                    flattened_dict[new_key] = value
+
+    return flattened_dict
+
+
 def fn(relative_path: str, idx: Optional[int] = None) -> str:
     """
     Given a path, output the same path, relative to the absolute directory path of the file that invoked this function.
@@ -443,7 +476,9 @@ def sanitize_text(s: str) -> str:
     Returns:
     `str`: Sanitized text.
     """
-    return unicodedata.normalize("NFKD", CCHARS_RE.sub("", s)).strip()
+
+    if isinstance(s, str):
+        return unicodedata.normalize("NFKD", CCHARS_RE.sub("", s)).strip()
 
 
 def squery(

@@ -610,7 +610,7 @@ def mkdocs_build(
     info_yml = {}
 
     for k, (str_fmt, kls) in INFO_TPLS.items():
-        vd = {i: GLOBAL_VARS.dir(i, "None") for i in kls}
+        vd = {i: GLOBAL_VARS.get(i, "None") for i in kls}
         if str_fmt is None:
             op = " ".join([str(i) for i in vd.values()])
         else:
