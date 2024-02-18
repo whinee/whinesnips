@@ -66,7 +66,7 @@ def gdf() -> None:
 def docs() -> None:
     from .docs import main
 
-    gdf()
+    # gdf()
     main()
 
 

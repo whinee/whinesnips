@@ -41,6 +41,7 @@ ruff:
 bootstrap:
     #!/usr/bin/env bash
     rm -rf poetry.lock
+    poetry env use 3.11
     poetry install --with dev
     source .venv/bin/activate
     python -m pip install --upgrade pip
@@ -87,7 +88,7 @@ test:
 # Build
 build:
     rm -rf dist
-    just gdf
+    # just gdf
     just docs
     just lint
     poetry build
